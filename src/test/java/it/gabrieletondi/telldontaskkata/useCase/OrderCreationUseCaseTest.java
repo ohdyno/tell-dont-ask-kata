@@ -17,6 +17,7 @@ import java.util.HashMap;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class OrderCreationUseCaseTest {
     private final TestOrderRepository orderRepository = new TestOrderRepository();
@@ -58,7 +59,7 @@ public class OrderCreationUseCaseTest {
         useCase.run(request);
 
         final Order insertedOrder = orderRepository.getSavedOrder();
-        assertThat(insertedOrder.getStatus(), is(OrderStatus.CREATED));
+        assertTrue(insertedOrder.isCreated());
         assertThat(insertedOrder.getTotal(), is(new BigDecimal("23.20")));
         assertThat(insertedOrder.getTax(), is(new BigDecimal("2.13")));
         assertThat(insertedOrder.getCurrency(), is("EUR"));

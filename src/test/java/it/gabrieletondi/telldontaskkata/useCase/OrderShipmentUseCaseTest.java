@@ -9,6 +9,7 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class OrderShipmentUseCaseTest {
     private final TestOrderRepository orderRepository = new TestOrderRepository();
@@ -27,7 +28,7 @@ public class OrderShipmentUseCaseTest {
 
         useCase.run(request);
 
-        assertThat(orderRepository.getSavedOrder().getStatus(), is(OrderStatus.SHIPPED));
+        assertTrue(orderRepository.getSavedOrder().isShipped());
         assertThat(shipmentService.getShippedOrder(), is(initialOrder));
     }
 

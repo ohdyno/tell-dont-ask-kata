@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.*;
+import static org.hamcrest.Matchers.is;
 
 public class Order {
     private BigDecimal total;
@@ -116,5 +117,9 @@ public class Order {
 
     public void shipped() {
         setStatus(OrderStatus.SHIPPED);
+    }
+
+    public boolean isCreated() {
+        return getStatus().equals(OrderStatus.CREATED);
     }
 }
