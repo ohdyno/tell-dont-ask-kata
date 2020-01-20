@@ -8,8 +8,7 @@ import it.gabrieletondi.telldontaskkata.useCase.ShippedOrdersCannotBeChangedExce
 import java.math.BigDecimal;
 import java.util.List;
 
-import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.CREATED;
-import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.REJECTED;
+import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.*;
 
 public class Order {
     private BigDecimal total;
@@ -109,5 +108,9 @@ public class Order {
 
     public boolean cannotBeShipped() {
         return getStatus().equals(CREATED) || getStatus().equals(REJECTED);
+    }
+
+    public boolean isShipped() {
+        return getStatus().equals(SHIPPED);
     }
 }
