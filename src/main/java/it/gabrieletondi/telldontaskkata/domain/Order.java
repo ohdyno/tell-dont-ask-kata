@@ -113,4 +113,8 @@ public class Order {
     public boolean isShipped() {
         return getStatus().equals(SHIPPED);
     }
+
+    public void shipped() {
+        setStatus(OrderStatus.SHIPPED);
+    }
 }
