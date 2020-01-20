@@ -58,4 +58,8 @@ public class Order {
     public void setId(int id) {
         this.id = id;
     }
+
+    public boolean cannotBeChanged() {
+        return getStatus().equals(OrderStatus.SHIPPED);
+    }
 }
