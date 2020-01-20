@@ -51,10 +51,6 @@ public class Order {
         this.tax = tax;
     }
 
-    public OrderStatus getStatus() {
-        return status;
-    }
-
     public void setStatus(OrderStatus status) {
         this.status = status;
     }
@@ -68,15 +64,15 @@ public class Order {
     }
 
     public boolean cannotBeChanged() {
-        return getStatus().equals(OrderStatus.SHIPPED);
+        return status.equals(OrderStatus.SHIPPED);
     }
 
     public boolean isRejected() {
-        return getStatus().equals(OrderStatus.REJECTED);
+        return status.equals(OrderStatus.REJECTED);
     }
 
     public boolean isApproved() {
-        return getStatus().equals(OrderStatus.APPROVED);
+        return status.equals(OrderStatus.APPROVED);
     }
 
     public void approve() {
@@ -108,11 +104,11 @@ public class Order {
     }
 
     public boolean cannotBeShipped() {
-        return getStatus().equals(CREATED) || getStatus().equals(REJECTED);
+        return status.equals(CREATED) || status.equals(REJECTED);
     }
 
     public boolean isShipped() {
-        return getStatus().equals(SHIPPED);
+        return status.equals(SHIPPED);
     }
 
     public void shipped() {
@@ -120,6 +116,6 @@ public class Order {
     }
 
     public boolean isCreated() {
-        return getStatus().equals(OrderStatus.CREATED);
+        return status.equals(OrderStatus.CREATED);
     }
 }
