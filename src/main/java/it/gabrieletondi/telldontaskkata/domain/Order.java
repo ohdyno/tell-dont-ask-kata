@@ -62,4 +62,8 @@ public class Order {
     public boolean cannotBeChanged() {
         return getStatus().equals(OrderStatus.SHIPPED);
     }
+
+    public boolean isRejected() {
+        return getStatus().equals(OrderStatus.REJECTED);
+    }
 }
