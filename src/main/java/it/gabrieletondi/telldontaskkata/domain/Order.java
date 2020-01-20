@@ -70,4 +70,12 @@ public class Order {
     public boolean isApproved() {
         return getStatus().equals(OrderStatus.APPROVED);
     }
+
+    public void approve() {
+        setStatus(OrderStatus.APPROVED);
+    }
+
+    public void reject() {
+        setStatus(OrderStatus.REJECTED);
+    }
 }
