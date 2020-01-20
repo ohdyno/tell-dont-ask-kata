@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.*;
-import static org.hamcrest.Matchers.is;
 
 public class Order {
     private BigDecimal total;
