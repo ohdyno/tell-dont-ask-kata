@@ -143,4 +143,24 @@ public class Order {
     public void process(SellItemsRequest request, ProductCatalog productCatalog) {
         request.process(this, productCatalog);
     }
+
+    public void sell(Product product, int quantity) {
+        if (product == null) {
+            throw new UnknownProductException();
+        }
+        else {
+            final BigDecimal taxedAmount = product.calculateTaxedAmount(quantity);
+            final BigDecimal taxAmount = product.calculateTaxAmount(quantity);
+
+            final OrderItem orderItem = new OrderItem();
+            orderItem.setProduct(product);
+            orderItem.setQuantity(quantity);
+            orderItem.setTax(taxAmount);
+            orderItem.setTaxedAmount(taxedAmount);
+            getItems().add(orderItem);
+
+            setTotal(getTotal().add(taxedAmount));
+            setTax(getTax().add(taxAmount));
+        }
+    }
 }
