@@ -37,7 +37,7 @@ public class Product {
     }
 
     public BigDecimal calculateTaxedAmount(int quantity) {
-        return price.add(category.calculateUnitaryTax(price)).setScale(2, HALF_UP).multiply(BigDecimal.valueOf(quantity)).setScale(2, HALF_UP);
+        return price.multiply(BigDecimal.valueOf(quantity)).add(calculateTaxAmount(quantity));
     }
 
     public BigDecimal calculateTaxAmount(int quantity) {

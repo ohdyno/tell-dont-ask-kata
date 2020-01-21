@@ -120,18 +120,25 @@ public class Order {
             throw new UnknownProductException();
         }
         else {
-            final BigDecimal taxedAmount = product.calculateTaxedAmount(quantity);
-            final BigDecimal taxAmount = product.calculateTaxAmount(quantity);
+            final OrderItem orderItem = new OrderItem(product, quantity);
 
-            final OrderItem orderItem = new OrderItem(product, quantity, taxAmount, taxedAmount);
-            items.add(orderItem);
-
-            this.total = total.add(taxedAmount);
-            this.tax = tax.add(taxAmount);
+            orderItem.addTo(this);
         }
     }
 
     public boolean hasId(int orderId) {
         return id == orderId;
+    }
+
+    public void addToTax(BigDecimal tax) {
+        this.tax = this.tax.add(tax);
+    }
+
+    public void addToTotal(BigDecimal amount) {
+        this.total = total.add(amount);
+    }
+
+    public void add(OrderItem orderItem) {
+        items.add(orderItem);
     }
 }

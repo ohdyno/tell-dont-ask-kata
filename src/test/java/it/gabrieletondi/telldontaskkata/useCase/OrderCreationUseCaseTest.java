@@ -43,18 +43,14 @@ public class OrderCreationUseCaseTest {
         expectedOrderItems.add(
                 new OrderItem(
                         new Product("salad", new BigDecimal("3.56"), food),
-                        2,
-                        new BigDecimal("0.72"),
-                        new BigDecimal("7.84")
+                        2
                 )
         );
 
         expectedOrderItems.add(
                 new OrderItem(
                         new Product("tomato", new BigDecimal("4.65"), food),
-                        3,
-                        new BigDecimal("1.41"),
-                        new BigDecimal("15.36")
+                        3
                 )
         );
         
