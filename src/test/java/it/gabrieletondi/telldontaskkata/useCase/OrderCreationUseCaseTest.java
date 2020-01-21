@@ -20,7 +20,6 @@ import static org.junit.Assert.assertTrue;
 public class OrderCreationUseCaseTest {
     private final TestOrderRepository orderRepository = new TestOrderRepository();
     private Category food = new Category() {{
-        setName("food");
         setTaxPercentage(new BigDecimal("10"));
     }};;
     private final ProductCatalog productCatalog = new InMemoryProductCatalog(
