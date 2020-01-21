@@ -54,16 +54,8 @@ public class Order {
         this.currency = "EUR";
     }
 
-    public boolean isRejected() {
-        return status.equals(OrderStatus.REJECTED);
-    }
-
-    public boolean isApproved() {
-        return status.equals(OrderStatus.APPROVED);
-    }
-
     public void approve() {
-        if (isRejected()) {
+        if (status.equals(OrderStatus.REJECTED)) {
             throw new RejectedOrderCannotBeApprovedException();
         }
 
@@ -71,7 +63,7 @@ public class Order {
     }
 
     public void reject() {
-        if (isApproved()) {
+        if (status.equals(OrderStatus.APPROVED)) {
             throw new ApprovedOrderCannotBeRejectedException();
         }
         this.status = OrderStatus.REJECTED;
