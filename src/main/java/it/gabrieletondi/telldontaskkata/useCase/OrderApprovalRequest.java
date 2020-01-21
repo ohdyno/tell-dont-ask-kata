@@ -18,12 +18,8 @@ public class OrderApprovalRequest {
         this.approved = approved;
     }
 
-    public boolean isApproved() {
-        return approved;
-    }
-
     public void process(Order order) {
-        if (isApproved()) {
+        if (approved) {
             order.approve();
         } else {
             order.reject();
