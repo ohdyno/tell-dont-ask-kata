@@ -24,16 +24,8 @@ public class OrderCreationUseCaseTest {
     }};;
     private final ProductCatalog productCatalog = new InMemoryProductCatalog(
             Arrays.<Product>asList(
-                    new Product() {{
-                        setName("salad");
-                        setPrice(new BigDecimal("3.56"));
-                        setCategory(food);
-                    }},
-                    new Product() {{
-                        setName("tomato");
-                        setPrice(new BigDecimal("4.65"));
-                        setCategory(food);
-                    }}
+                    new Product("salad", new BigDecimal("3.56"), food),
+                    new Product("tomato", new BigDecimal("4.65"), food) 
             )
     );
     private final OrderCreationUseCase useCase = new OrderCreationUseCase(orderRepository, productCatalog);

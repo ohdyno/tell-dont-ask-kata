@@ -10,6 +10,12 @@ public class Product {
     private BigDecimal price;
     private Category category;
 
+    public Product(String name, BigDecimal price, Category category) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
+
     public String getName() {
         return name;
     }
