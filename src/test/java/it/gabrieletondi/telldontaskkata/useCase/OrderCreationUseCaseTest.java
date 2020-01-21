@@ -7,12 +7,11 @@ import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class OrderCreationUseCaseTest {
     private final TestOrderRepository orderRepository = new TestOrderRepository();
@@ -20,14 +19,13 @@ public class OrderCreationUseCaseTest {
     private final ProductCatalog productCatalog = new InMemoryProductCatalog(
             Arrays.asList(
                     new Product("salad", new BigDecimal("3.56"), food),
-                    new Product("tomato", new BigDecimal("4.65"), food) 
+                    new Product("tomato", new BigDecimal("4.65"), food)
             )
     );
     private final OrderCreationUseCase useCase = new OrderCreationUseCase(orderRepository, productCatalog);
 
     @Test
     public void sellMultipleItems() {
-
         final SellItemsRequest request = new SellItemsRequest(
                 Arrays.asList(
                         new SellItemRequest("salad", 2),
@@ -35,28 +33,16 @@ public class OrderCreationUseCaseTest {
                 )
         );
 
+        final List<OrderItem> expectedOrderItems = Arrays.asList(
+                new OrderItem(productCatalog.getByName("salad"), 2),
+                new OrderItem(productCatalog.getByName("tomato"), 3)
+        );
+
+        Order expectedOrder = new Order(OrderStatus.CREATED, new BigDecimal("23.20"), new BigDecimal("2.13"), expectedOrderItems, 1);
+
         useCase.run(request);
 
-        final Order insertedOrder = orderRepository.getSavedOrder();
-
-        List<OrderItem> expectedOrderItems = new ArrayList<>();
-        expectedOrderItems.add(
-                new OrderItem(
-                        new Product("salad", new BigDecimal("3.56"), food),
-                        2
-                )
-        );
-
-        expectedOrderItems.add(
-                new OrderItem(
-                        new Product("tomato", new BigDecimal("4.65"), food),
-                        3
-                )
-        );
-        
-        Order expectedOrder = new Order(OrderStatus.CREATED, new BigDecimal("23.20"), new BigDecimal("2.13"), expectedOrderItems, 1);
-        
-        assertEquals(expectedOrder, insertedOrder);
+        assertEquals(expectedOrder, orderRepository.getSavedOrder());
     }
 
     @Test(expected = UnknownProductException.class)

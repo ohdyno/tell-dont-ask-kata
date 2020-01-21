@@ -22,8 +22,7 @@ public class OrderApprovalUseCaseTest {
 
         useCase.run(request);
 
-        final Order savedOrder = orderRepository.getSavedOrder();
-        assertEquals(new Order(OrderStatus.APPROVED,1), savedOrder);
+        assertEquals(new Order(OrderStatus.APPROVED,1), orderRepository.getSavedOrder());
     }
 
     @Test
@@ -35,8 +34,7 @@ public class OrderApprovalUseCaseTest {
 
         useCase.run(request);
 
-        final Order savedOrder = orderRepository.getSavedOrder();
-        assertEquals(new Order(OrderStatus.REJECTED,1), savedOrder);
+        assertEquals(new Order(OrderStatus.REJECTED,1), orderRepository.getSavedOrder());
     }
 
     @Test(expected = RejectedOrderCannotBeApprovedException.class)
