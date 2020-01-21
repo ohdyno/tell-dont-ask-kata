@@ -9,8 +9,8 @@ import java.util.List;
 public class SellItemsRequest {
     private List<SellItemRequest> requests;
 
-    public SellItemsRequest() {
-        requests = new ArrayList<>();
+    public SellItemsRequest(List<SellItemRequest> requests) {
+        this.requests = requests;
     }
 
     public List<SellItemRequest> getRequests() {
