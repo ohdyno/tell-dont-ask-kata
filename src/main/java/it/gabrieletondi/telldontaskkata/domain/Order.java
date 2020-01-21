@@ -64,6 +64,10 @@ public class Order {
     }
 
     public void approve() {
+        if (isRejected()) {
+            throw new RejectedOrderCannotBeApprovedException();
+        }
+
         this.status = OrderStatus.APPROVED;
     }
 

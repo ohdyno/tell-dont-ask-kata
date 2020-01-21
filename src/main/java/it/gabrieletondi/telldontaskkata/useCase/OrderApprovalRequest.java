@@ -24,9 +24,6 @@ public class OrderApprovalRequest {
 
     public void process(Order order) {
         if (isApproved()) {
-            if (order.isRejected()) {
-                throw new RejectedOrderCannotBeApprovedException();
-            }
             order.approve();
         } else {
             if (order.isApproved()) {
