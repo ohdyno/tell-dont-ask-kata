@@ -8,6 +8,28 @@ public class Product {
     private final BigDecimal price;
     private final Category category;
 
+    public Product(String name, BigDecimal price, Category category) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
+
+    public OrderItem order(int quantity) {
+        return new OrderItem(this, quantity);
+    }
+
+    public boolean hasName(String name) {
+        return this.name.equals(name);
+    }
+
+    public BigDecimal calculateTaxedAmount(int quantity) {
+        return price.multiply(BigDecimal.valueOf(quantity)).add(calculateTaxAmount(quantity));
+    }
+
+    public BigDecimal calculateTaxAmount(int quantity) {
+        return category.calculateUnitaryTax(price).multiply(BigDecimal.valueOf(quantity));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -21,27 +43,5 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(name, price, category);
-    }
-
-    public Product(String name, BigDecimal price, Category category) {
-        this.name = name;
-        this.price = price;
-        this.category = category;
-    }
-
-    public BigDecimal calculateTaxedAmount(int quantity) {
-        return price.multiply(BigDecimal.valueOf(quantity)).add(calculateTaxAmount(quantity));
-    }
-
-    public BigDecimal calculateTaxAmount(int quantity) {
-        return category.calculateUnitaryTax(price).multiply(BigDecimal.valueOf(quantity));
-    }
-
-    public OrderItem order(int quantity) {
-        return new OrderItem(this, quantity);
-    }
-
-    public boolean hasName(String name) {
-        return this.name.equals(name);
     }
 }
