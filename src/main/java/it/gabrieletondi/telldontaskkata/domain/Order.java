@@ -152,11 +152,7 @@ public class Order {
             final BigDecimal taxedAmount = product.calculateTaxedAmount(quantity);
             final BigDecimal taxAmount = product.calculateTaxAmount(quantity);
 
-            final OrderItem orderItem = new OrderItem();
-            orderItem.setProduct(product);
-            orderItem.setQuantity(quantity);
-            orderItem.setTax(taxAmount);
-            orderItem.setTaxedAmount(taxedAmount);
+            final OrderItem orderItem = new OrderItem(product, quantity, taxAmount, taxedAmount);
             getItems().add(orderItem);
 
             setTotal(getTotal().add(taxedAmount));
