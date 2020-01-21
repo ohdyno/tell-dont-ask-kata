@@ -7,10 +7,29 @@ import it.gabrieletondi.telldontaskkata.useCase.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.*;
 
 public class Order {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return id == order.id &&
+                total.equals(order.total) &&
+                currency.equals(order.currency) &&
+                items.equals(order.items) &&
+                tax.equals(order.tax) &&
+                status == order.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(total, currency, items, tax, status, id);
+    }
+
     private BigDecimal total;
     private String currency;
     private List<OrderItem> items;
@@ -23,12 +42,16 @@ public class Order {
     }
 
     public Order(OrderStatus status) {
-        this.id = 1;
+        this(status, new BigDecimal("0.00"), new BigDecimal("0.00"), new ArrayList<OrderItem>());
+    }
+
+    public Order(OrderStatus status, BigDecimal total, BigDecimal tax, List<OrderItem> items) {
         this.status = status;
-        this.items = new ArrayList<>();
+        this.total = total;
+        this.tax = tax;
+        this.id = 1;
+        this.items = items;
         this.currency = "EUR";
-        this.total = new BigDecimal("0.00");
-        this.tax = new BigDecimal("0.00");
     }
 
     public BigDecimal getTotal() {
