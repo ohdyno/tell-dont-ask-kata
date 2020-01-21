@@ -21,9 +21,9 @@ public class OrderCreationUseCaseTest {
     private final TestOrderRepository orderRepository = new TestOrderRepository();
     private Category food = new Category() {{
         setTaxPercentage(new BigDecimal("10"));
-    }};;
+    }};
     private final ProductCatalog productCatalog = new InMemoryProductCatalog(
-            Arrays.<Product>asList(
+            Arrays.asList(
                     new Product("salad", new BigDecimal("3.56"), food),
                     new Product("tomato", new BigDecimal("4.65"), food) 
             )
