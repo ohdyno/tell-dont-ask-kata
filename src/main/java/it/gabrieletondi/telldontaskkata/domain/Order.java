@@ -20,42 +20,26 @@ public class Order {
 
     public Order() {
         setStatus(OrderStatus.CREATED);
-        setItems(new ArrayList<>());
-        setCurrency("EUR");
-        setTotal(new BigDecimal("0.00"));
-        setTax(new BigDecimal("0.00"));
+        this.items = new ArrayList<>();
+        this.currency = "EUR";
+        this.total = new BigDecimal("0.00");
+        this.tax = new BigDecimal("0.00");
     }
 
     public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-
     public String getCurrency() {
         return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
     }
 
     public List<OrderItem> getItems() {
         return items;
     }
 
-    public void setItems(List<OrderItem> items) {
-        this.items = items;
-    }
-
     public BigDecimal getTax() {
         return tax;
-    }
-
-    public void setTax(BigDecimal tax) {
-        this.tax = tax;
     }
 
     public void setStatus(OrderStatus status) {
@@ -155,8 +139,8 @@ public class Order {
             final OrderItem orderItem = new OrderItem(product, quantity, taxAmount, taxedAmount);
             getItems().add(orderItem);
 
-            setTotal(getTotal().add(taxedAmount));
-            setTax(getTax().add(taxAmount));
+            this.total = getTotal().add(taxedAmount);
+            this.tax = getTax().add(taxAmount);
         }
     }
 }
