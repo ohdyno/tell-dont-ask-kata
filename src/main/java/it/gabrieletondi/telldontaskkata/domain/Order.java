@@ -65,7 +65,7 @@ public class Order {
         }
     }
 
-    public void process(OrderApprovalRequest request) {
+    public void approve(OrderApprovalRequest request) {
         if (status.equals(SHIPPED)) {
             throw new ShippedOrdersCannotBeChangedException();
         }

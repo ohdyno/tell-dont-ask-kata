@@ -23,7 +23,7 @@ public class OrderApprovalRequest {
     void approve(OrderRepository orderRepository) {
         final Order order = orderRepository.getById(orderId);
 
-        order.process(this);
+        order.approve(this);
 
         orderRepository.save(order);
     }
