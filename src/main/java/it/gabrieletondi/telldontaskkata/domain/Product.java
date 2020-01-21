@@ -36,23 +36,11 @@ public class Product {
         return name;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public BigDecimal calculateUnitaryTax() {
-        return getPrice().divide(valueOf(100)).multiply(getCategory().getTaxPercentage()).setScale(2, HALF_UP);
-    }
-
     public BigDecimal calculateTaxedAmount(int quantity) {
-        return getPrice().add(calculateUnitaryTax()).setScale(2, HALF_UP).multiply(BigDecimal.valueOf(quantity)).setScale(2, HALF_UP);
+        return price.add(category.calculateUnitaryTax(price)).setScale(2, HALF_UP).multiply(BigDecimal.valueOf(quantity)).setScale(2, HALF_UP);
     }
 
     public BigDecimal calculateTaxAmount(int quantity) {
-        return calculateUnitaryTax().multiply(BigDecimal.valueOf(quantity));
+        return category.calculateUnitaryTax(price).multiply(BigDecimal.valueOf(quantity));
     }
 }
