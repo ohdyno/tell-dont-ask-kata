@@ -125,10 +125,10 @@ public class Order {
             final BigDecimal taxAmount = product.calculateTaxAmount(quantity);
 
             final OrderItem orderItem = new OrderItem(product, quantity, taxAmount, taxedAmount);
-            getItems().add(orderItem);
+            items.add(orderItem);
 
-            this.total = getTotal().add(taxedAmount);
-            this.tax = getTax().add(taxAmount);
+            this.total = total.add(taxedAmount);
+            this.tax = tax.add(taxAmount);
         }
     }
 }
