@@ -76,19 +76,7 @@ public class Order {
             throw new ShippedOrdersCannotBeChangedException();
         }
 
-        if (request.isApproved() && isRejected()) {
-            throw new RejectedOrderCannotBeApprovedException();
-        }
-
-        if (!request.isApproved() && isApproved()) {
-            throw new ApprovedOrderCannotBeRejectedException();
-        }
-
-        if (request.isApproved()) {
-            approve();
-        } else {
-            reject();
-        }
+        request.process(this);
     }
 
     public boolean cannotBeShipped() {
