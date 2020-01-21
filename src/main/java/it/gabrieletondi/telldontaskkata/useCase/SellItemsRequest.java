@@ -12,12 +12,8 @@ public class SellItemsRequest {
         this.requests = requests;
     }
 
-    public List<SellItemRequest> getRequests() {
-        return requests;
-    }
-
     public void process(Order order, ProductCatalog productCatalog) {
-        for (SellItemRequest itemRequest : getRequests()) {
+        for (SellItemRequest itemRequest : requests) {
             itemRequest.process(order, productCatalog);
         }
 

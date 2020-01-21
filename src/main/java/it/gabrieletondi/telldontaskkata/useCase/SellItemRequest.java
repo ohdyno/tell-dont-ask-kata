@@ -13,17 +13,9 @@ public class SellItemRequest {
         this.quantity = quantity;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
     void process(Order order, ProductCatalog productCatalog) {
-        Product product = productCatalog.getByName(getProductName());
+        Product product = productCatalog.getByName(productName);
 
-        order.sell(product, getQuantity());
+        order.sell(product, quantity);
     }
 }
