@@ -10,6 +10,6 @@ public class OrderApprovalUseCase {
     }
 
     public void run(OrderApprovalRequest request) {
-        request.process(orderRepository);
+        request.approve(orderRepository);
     }
 }

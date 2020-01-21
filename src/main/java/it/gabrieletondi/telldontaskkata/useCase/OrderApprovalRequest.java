@@ -12,15 +12,15 @@ public class OrderApprovalRequest {
         this.approved = approved;
     }
 
-    public void process(Order order) {
+    public void approve(Order order) {
         if (approved) {
-            order.approve();
+            order.approved();
         } else {
-            order.reject();
+            order.rejected();
         }
     }
 
-    void process(OrderRepository orderRepository) {
+    void approve(OrderRepository orderRepository) {
         final Order order = orderRepository.getById(orderId);
 
         order.process(this);
