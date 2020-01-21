@@ -19,7 +19,12 @@ public class Order {
     private int id;
 
     public Order() {
-        setStatus(OrderStatus.CREATED);
+        this(1, OrderStatus.CREATED);
+    }
+
+    public Order(int id, OrderStatus status) {
+        this.id = id;
+        this.status = status;
         this.items = new ArrayList<>();
         this.currency = "EUR";
         this.total = new BigDecimal("0.00");

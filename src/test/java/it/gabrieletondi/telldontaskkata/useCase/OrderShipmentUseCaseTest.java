@@ -18,7 +18,7 @@ public class OrderShipmentUseCaseTest {
 
     @Test
     public void shipApprovedOrder() throws Exception {
-        Order initialOrder = new Order();
+        Order initialOrder = new Order(1, OrderStatus.APPROVED);
         initialOrder.setId(1);
         initialOrder.setStatus(OrderStatus.APPROVED);
         orderRepository.addOrder(initialOrder);
