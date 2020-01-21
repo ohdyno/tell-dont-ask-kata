@@ -17,31 +17,13 @@ import java.util.Objects;
 import static it.gabrieletondi.telldontaskkata.domain.OrderStatus.*;
 
 public class Order {
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return id == order.id &&
-                total.equals(order.total) &&
-                currency.equals(order.currency) &&
-                items.equals(order.items) &&
-                tax.equals(order.tax) &&
-                status == order.status;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(total, currency, items, tax, status, id);
-    }
-
     private BigDecimal total;
+
     private final String currency;
     private final List<OrderItem> items;
     private BigDecimal tax;
     private OrderStatus status;
     private final int id;
-
     public Order() {
         this(OrderStatus.CREATED, 1);
     }
@@ -57,33 +39,6 @@ public class Order {
         this.id = id;
         this.items = items;
         this.currency = "EUR";
-    }
-
-    public void approved() {
-        if (status.equals(OrderStatus.REJECTED)) {
-            throw new RejectedOrderCannotBeApprovedException();
-        }
-
-        this.status = OrderStatus.APPROVED;
-    }
-
-    public void rejected() {
-        if (status.equals(OrderStatus.APPROVED)) {
-            throw new ApprovedOrderCannotBeRejectedException();
-        }
-        this.status = OrderStatus.REJECTED;
-    }
-
-    public void process(OrderApprovalRequest request) {
-        if (status.equals(SHIPPED)) {
-            throw new ShippedOrdersCannotBeChangedException();
-        }
-
-        request.approve(this);
-    }
-
-    public void shipped() {
-        this.status = OrderStatus.SHIPPED;
     }
 
     public void ship(ShipmentService shipmentService) {
@@ -110,6 +65,33 @@ public class Order {
         }
     }
 
+    public void process(OrderApprovalRequest request) {
+        if (status.equals(SHIPPED)) {
+            throw new ShippedOrdersCannotBeChangedException();
+        }
+
+        request.approve(this);
+    }
+
+    public void approved() {
+        if (status.equals(OrderStatus.REJECTED)) {
+            throw new RejectedOrderCannotBeApprovedException();
+        }
+
+        this.status = OrderStatus.APPROVED;
+    }
+
+    public void rejected() {
+        if (status.equals(OrderStatus.APPROVED)) {
+            throw new ApprovedOrderCannotBeRejectedException();
+        }
+        this.status = OrderStatus.REJECTED;
+    }
+
+    public void shipped() {
+        this.status = OrderStatus.SHIPPED;
+    }
+
     public boolean hasId(int orderId) {
         return id == orderId;
     }
@@ -124,5 +106,23 @@ public class Order {
 
     public void add(OrderItem orderItem) {
         items.add(orderItem);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return id == order.id &&
+                total.equals(order.total) &&
+                currency.equals(order.currency) &&
+                items.equals(order.items) &&
+                tax.equals(order.tax) &&
+                status == order.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(total, currency, items, tax, status, id);
     }
 }
