@@ -5,8 +5,8 @@ import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
 
 public class SellItemRequest {
-    private int quantity;
-    private String productName;
+    private final int quantity;
+    private final String productName;
 
     public SellItemRequest(String productName, int quantity) {
         this.productName = productName;

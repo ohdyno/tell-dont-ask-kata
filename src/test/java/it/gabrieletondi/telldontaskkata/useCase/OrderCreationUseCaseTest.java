@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 public class OrderCreationUseCaseTest {
     private final TestOrderRepository orderRepository = new TestOrderRepository();
-    private Category food = new Category(new BigDecimal("10"));
+    private final Category food = new Category(new BigDecimal("10"));
     private final ProductCatalog productCatalog = new InMemoryProductCatalog(
             Arrays.asList(
                     new Product("salad", new BigDecimal("3.56"), food),

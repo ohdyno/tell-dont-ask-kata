@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class OrderItem {
-    private Product product;
-    private int quantity;
-    private BigDecimal taxedAmount;
-    private BigDecimal tax;
+    private final Product product;
+    private final int quantity;
+    private final BigDecimal taxedAmount;
+    private final BigDecimal tax;
 
     @Override
     public boolean equals(Object o) {

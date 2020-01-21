@@ -7,9 +7,9 @@ import static java.math.BigDecimal.valueOf;
 import static java.math.RoundingMode.HALF_UP;
 
 public class Product {
-    private String name;
-    private BigDecimal price;
-    private Category category;
+    private final String name;
+    private final BigDecimal price;
+    private final Category category;
 
     @Override
     public boolean equals(Object o) {
