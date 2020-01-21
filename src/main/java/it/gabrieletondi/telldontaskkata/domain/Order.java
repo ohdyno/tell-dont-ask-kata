@@ -47,10 +47,6 @@ public class Order {
         return tax;
     }
 
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-    }
-
     public int getId() {
         return id;
     }
@@ -68,11 +64,11 @@ public class Order {
     }
 
     public void approve() {
-        setStatus(OrderStatus.APPROVED);
+        this.status = OrderStatus.APPROVED;
     }
 
     public void reject() {
-        setStatus(OrderStatus.REJECTED);
+        this.status = OrderStatus.REJECTED;
     }
 
     public void process(OrderApprovalRequest request) {
@@ -104,7 +100,7 @@ public class Order {
     }
 
     public void shipped() {
-        setStatus(OrderStatus.SHIPPED);
+        this.status = OrderStatus.SHIPPED;
     }
 
     public boolean isCreated() {
