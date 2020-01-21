@@ -70,19 +70,11 @@ public class Order {
     }
 
     public void process(OrderApprovalRequest request) {
-        if (isShipped()) {
+        if (status.equals(SHIPPED)) {
             throw new ShippedOrdersCannotBeChangedException();
         }
 
         request.process(this);
-    }
-
-    public boolean cannotBeShipped() {
-        return status.equals(CREATED) || status.equals(REJECTED);
-    }
-
-    public boolean isShipped() {
-        return status.equals(SHIPPED);
     }
 
     public void shipped() {
@@ -90,11 +82,11 @@ public class Order {
     }
 
     public void ship(ShipmentService shipmentService) {
-        if (cannotBeShipped()) {
+        if (status.equals(CREATED) || status.equals(REJECTED)) {
             throw new OrderCannotBeShippedException();
         }
 
-        if (isShipped()) {
+        if (status.equals(SHIPPED)) {
             throw new OrderCannotBeShippedTwiceException();
         }
 

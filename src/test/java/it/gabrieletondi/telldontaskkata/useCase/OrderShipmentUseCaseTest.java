@@ -8,8 +8,7 @@ import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class OrderShipmentUseCaseTest {
     private final TestOrderRepository orderRepository = new TestOrderRepository();
@@ -25,7 +24,7 @@ public class OrderShipmentUseCaseTest {
 
         useCase.run(request);
 
-        assertTrue(orderRepository.getSavedOrder().isShipped());
+        assertEquals(new Order(OrderStatus.SHIPPED, 1), orderRepository.getSavedOrder());
         assertThat(shipmentService.getShippedOrder(), is(initialOrder));
     }
 
