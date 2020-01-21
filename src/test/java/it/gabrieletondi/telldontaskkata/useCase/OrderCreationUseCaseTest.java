@@ -4,6 +4,10 @@ import it.gabrieletondi.telldontaskkata.domain.*;
 import it.gabrieletondi.telldontaskkata.doubles.InMemoryProductCatalog;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
+import it.gabrieletondi.telldontaskkata.useCase.creation.OrderCreationUseCase;
+import it.gabrieletondi.telldontaskkata.useCase.creation.SellItemRequest;
+import it.gabrieletondi.telldontaskkata.useCase.creation.SellItemsRequest;
+import it.gabrieletondi.telldontaskkata.useCase.creation.UnknownProductException;
 import org.junit.Test;
 
 import java.math.BigDecimal;

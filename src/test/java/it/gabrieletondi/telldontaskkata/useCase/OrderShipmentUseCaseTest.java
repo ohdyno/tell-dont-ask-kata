@@ -4,6 +4,10 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.doubles.TestShipmentService;
+import it.gabrieletondi.telldontaskkata.useCase.shipment.OrderCannotBeShippedException;
+import it.gabrieletondi.telldontaskkata.useCase.shipment.OrderCannotBeShippedTwiceException;
+import it.gabrieletondi.telldontaskkata.useCase.shipment.OrderShipmentRequest;
+import it.gabrieletondi.telldontaskkata.useCase.shipment.OrderShipmentUseCase;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;

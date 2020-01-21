@@ -1,7 +1,13 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
 import it.gabrieletondi.telldontaskkata.service.ShipmentService;
-import it.gabrieletondi.telldontaskkata.useCase.*;
+import it.gabrieletondi.telldontaskkata.useCase.approval.ApprovedOrderCannotBeRejectedException;
+import it.gabrieletondi.telldontaskkata.useCase.approval.OrderApprovalRequest;
+import it.gabrieletondi.telldontaskkata.useCase.approval.RejectedOrderCannotBeApprovedException;
+import it.gabrieletondi.telldontaskkata.useCase.creation.UnknownProductException;
+import it.gabrieletondi.telldontaskkata.useCase.shipment.OrderCannotBeShippedException;
+import it.gabrieletondi.telldontaskkata.useCase.shipment.OrderCannotBeShippedTwiceException;
+import it.gabrieletondi.telldontaskkata.useCase.shipment.ShippedOrdersCannotBeChangedException;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
