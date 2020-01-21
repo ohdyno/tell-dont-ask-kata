@@ -43,4 +43,8 @@ public class Product {
     public BigDecimal calculateTaxAmount(int quantity) {
         return category.calculateUnitaryTax(price).multiply(BigDecimal.valueOf(quantity));
     }
+
+    public OrderItem order(int quantity) {
+        return new OrderItem(this, quantity);
+    }
 }

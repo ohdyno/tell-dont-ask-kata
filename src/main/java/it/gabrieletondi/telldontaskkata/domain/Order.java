@@ -120,8 +120,7 @@ public class Order {
             throw new UnknownProductException();
         }
         else {
-            final OrderItem orderItem = new OrderItem(product, quantity);
-
+            final OrderItem orderItem = product.order(quantity);
             orderItem.addTo(this);
         }
     }
