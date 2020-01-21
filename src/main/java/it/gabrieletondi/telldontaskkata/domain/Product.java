@@ -14,10 +14,6 @@ public class Product {
         this.category = category;
     }
 
-    public OrderItem order(int quantity) {
-        return new OrderItem(this, quantity);
-    }
-
     public boolean hasName(String name) {
         return this.name.equals(name);
     }
@@ -44,4 +40,5 @@ public class Product {
     public int hashCode() {
         return Objects.hash(name, price, category);
     }
+
 }

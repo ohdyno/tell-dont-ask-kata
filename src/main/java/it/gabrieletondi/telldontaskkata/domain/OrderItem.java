@@ -11,8 +11,7 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public void addTo(Order order) {
-        order.add(this);
+    public void addedTo(Order order) {
         order.addToTax(product.calculateTaxAmount(quantity));
         order.addToTotal(product.calculateTaxedAmount(quantity));
     }

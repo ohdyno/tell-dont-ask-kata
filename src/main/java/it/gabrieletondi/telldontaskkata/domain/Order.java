@@ -59,9 +59,10 @@ public class Order {
         if (product == null) {
             throw new UnknownProductException();
         }
-        
-        final OrderItem orderItem = product.order(quantity);
-        orderItem.addTo(this);
+
+        OrderItem orderItem = new OrderItem(product, quantity);
+        items.add(orderItem);
+        orderItem.addedTo(this);
     }
 
     public void approve(OrderApprovalRequest request) {
@@ -97,10 +98,6 @@ public class Order {
 
     public void addToTotal(BigDecimal amount) {
         this.total = total.add(amount);
-    }
-
-    public void add(OrderItem orderItem) {
-        items.add(orderItem);
     }
 
     @Override
