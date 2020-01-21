@@ -1,6 +1,5 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class OrderItem {

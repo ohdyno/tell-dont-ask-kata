@@ -3,8 +3,6 @@ package it.gabrieletondi.telldontaskkata.domain;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import static java.math.BigDecimal.valueOf;
-
 public class Product {
     private final String name;
     private final BigDecimal price;
