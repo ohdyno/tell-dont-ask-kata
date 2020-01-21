@@ -8,6 +8,11 @@ public class SellItemRequest {
     private int quantity;
     private String productName;
 
+    public SellItemRequest(String productName, int quantity) {
+        this.productName = productName;
+        this.quantity = quantity;
+    }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
