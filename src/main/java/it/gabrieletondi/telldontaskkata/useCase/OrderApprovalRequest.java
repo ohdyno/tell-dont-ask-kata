@@ -11,16 +11,8 @@ public class OrderApprovalRequest {
         this.approved = approved;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
     public int getOrderId() {
         return orderId;
-    }
-
-    public void setApproved(boolean approved) {
-        this.approved = approved;
     }
 
     public void process(Order order) {
