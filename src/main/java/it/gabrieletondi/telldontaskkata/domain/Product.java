@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 import static java.math.BigDecimal.valueOf;
-import static java.math.RoundingMode.HALF_UP;
 
 public class Product {
     private final String name;
@@ -32,10 +31,6 @@ public class Product {
         this.category = category;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public BigDecimal calculateTaxedAmount(int quantity) {
         return price.multiply(BigDecimal.valueOf(quantity)).add(calculateTaxAmount(quantity));
     }
@@ -46,5 +41,9 @@ public class Product {
 
     public OrderItem order(int quantity) {
         return new OrderItem(this, quantity);
+    }
+
+    public boolean hasName(String name) {
+        return this.name.equals(name);
     }
 }
