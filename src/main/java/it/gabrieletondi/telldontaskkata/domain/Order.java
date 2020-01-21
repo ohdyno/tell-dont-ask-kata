@@ -52,17 +52,16 @@ public class Order {
 
         shipmentService.ship(this);
 
-        shipped();
+        this.status = OrderStatus.SHIPPED;
     }
 
     public void sell(Product product, int quantity) {
         if (product == null) {
             throw new UnknownProductException();
         }
-        else {
-            final OrderItem orderItem = product.order(quantity);
-            orderItem.addTo(this);
-        }
+        
+        final OrderItem orderItem = product.order(quantity);
+        orderItem.addTo(this);
     }
 
     public void approve(OrderApprovalRequest request) {
@@ -86,10 +85,6 @@ public class Order {
             throw new ApprovedOrderCannotBeRejectedException();
         }
         this.status = OrderStatus.REJECTED;
-    }
-
-    public void shipped() {
-        this.status = OrderStatus.SHIPPED;
     }
 
     public boolean hasId(int orderId) {
