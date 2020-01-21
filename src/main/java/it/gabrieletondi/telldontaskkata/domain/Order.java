@@ -51,10 +51,6 @@ public class Order {
         return id;
     }
 
-    public boolean cannotBeChanged() {
-        return status.equals(OrderStatus.SHIPPED);
-    }
-
     public boolean isRejected() {
         return status.equals(OrderStatus.REJECTED);
     }
@@ -79,7 +75,7 @@ public class Order {
     }
 
     public void process(OrderApprovalRequest request) {
-        if (cannotBeChanged()) {
+        if (isShipped()) {
             throw new ShippedOrdersCannotBeChangedException();
         }
 
