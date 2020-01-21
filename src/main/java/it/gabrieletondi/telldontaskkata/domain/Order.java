@@ -38,18 +38,18 @@ public class Order {
     private final int id;
 
     public Order() {
-        this(OrderStatus.CREATED);
+        this(OrderStatus.CREATED, 1);
     }
 
-    public Order(OrderStatus status) {
-        this(status, new BigDecimal("0.00"), new BigDecimal("0.00"), new ArrayList<>());
+    public Order(OrderStatus status, int id) {
+        this(status, new BigDecimal("0.00"), new BigDecimal("0.00"), new ArrayList<>(), id);
     }
 
-    public Order(OrderStatus status, BigDecimal total, BigDecimal tax, List<OrderItem> items) {
+    public Order(OrderStatus status, BigDecimal total, BigDecimal tax, List<OrderItem> items, int id) {
         this.status = status;
         this.total = total;
         this.tax = tax;
-        this.id = 1;
+        this.id = id;
         this.items = items;
         this.currency = "EUR";
     }

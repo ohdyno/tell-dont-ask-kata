@@ -58,7 +58,7 @@ public class OrderCreationUseCaseTest {
                 )
         );
         
-        Order expectedOrder = new Order(OrderStatus.CREATED, new BigDecimal("23.20"), new BigDecimal("2.13"), expectedOrderItems);
+        Order expectedOrder = new Order(OrderStatus.CREATED, new BigDecimal("23.20"), new BigDecimal("2.13"), expectedOrderItems, 1);
         
         assertEquals(expectedOrder, insertedOrder);
     }
