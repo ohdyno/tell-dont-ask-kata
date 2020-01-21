@@ -22,27 +22,7 @@ public class OrderCreationUseCase {
     public void run(SellItemsRequest request) {
         Order order = new Order();
 
-        for (SellItemRequest itemRequest : request.getRequests()) {
-            Product product = productCatalog.getByName(itemRequest.getProductName());
-
-            if (product == null) {
-                throw new UnknownProductException();
-            }
-            else {
-                final BigDecimal taxedAmount = product.calculateTaxedAmount(itemRequest);
-                final BigDecimal taxAmount = product.calculateTaxAmount(itemRequest);
-
-                final OrderItem orderItem = new OrderItem();
-                orderItem.setProduct(product);
-                orderItem.setQuantity(itemRequest.getQuantity());
-                orderItem.setTax(taxAmount);
-                orderItem.setTaxedAmount(taxedAmount);
-                order.getItems().add(orderItem);
-
-                order.setTotal(order.getTotal().add(taxedAmount));
-                order.setTax(order.getTax().add(taxAmount));
-            }
-        }
+        order.process(request, productCatalog);
 
         orderRepository.save(order);
     }

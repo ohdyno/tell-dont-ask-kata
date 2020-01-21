@@ -1,5 +1,6 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
+import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
 import it.gabrieletondi.telldontaskkata.service.ShipmentService;
 import it.gabrieletondi.telldontaskkata.useCase.*;
 
@@ -137,5 +138,29 @@ public class Order {
         shipmentService.ship(this);
 
         shipped();
+    }
+
+    public void process(SellItemsRequest request, ProductCatalog productCatalog) {
+        for (SellItemRequest itemRequest : request.getRequests()) {
+            Product product = productCatalog.getByName(itemRequest.getProductName());
+
+            if (product == null) {
+                throw new UnknownProductException();
+            }
+            else {
+                final BigDecimal taxedAmount = product.calculateTaxedAmount(itemRequest);
+                final BigDecimal taxAmount = product.calculateTaxAmount(itemRequest);
+
+                final OrderItem orderItem = new OrderItem();
+                orderItem.setProduct(product);
+                orderItem.setQuantity(itemRequest.getQuantity());
+                orderItem.setTax(taxAmount);
+                orderItem.setTaxedAmount(taxedAmount);
+                getItems().add(orderItem);
+
+                setTotal(getTotal().add(taxedAmount));
+                setTax(getTax().add(taxAmount));
+            }
+        }
     }
 }
