@@ -1,6 +1,5 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
-import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
 
@@ -14,11 +13,6 @@ public class OrderCreationUseCase {
     }
 
     public void run(SellItemsRequest request) {
-        Order order = new Order();
-
-        order.process(request, productCatalog);
-
-        orderRepository.save(order);
+        request.process(productCatalog, orderRepository);
     }
-
 }

@@ -95,10 +95,6 @@ public class Order {
         shipped();
     }
 
-    public void process(SellItemsRequest request, ProductCatalog productCatalog) {
-        request.process(this, productCatalog);
-    }
-
     public void sell(Product product, int quantity) {
         if (product == null) {
             throw new UnknownProductException();
