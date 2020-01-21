@@ -3,7 +3,6 @@ package it.gabrieletondi.telldontaskkata.useCase;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SellItemsRequest {

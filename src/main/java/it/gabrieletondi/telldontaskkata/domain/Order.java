@@ -42,7 +42,7 @@ public class Order {
     }
 
     public Order(OrderStatus status) {
-        this(status, new BigDecimal("0.00"), new BigDecimal("0.00"), new ArrayList<OrderItem>());
+        this(status, new BigDecimal("0.00"), new BigDecimal("0.00"), new ArrayList<>());
     }
 
     public Order(OrderStatus status, BigDecimal total, BigDecimal tax, List<OrderItem> items) {
@@ -52,22 +52,6 @@ public class Order {
         this.id = 1;
         this.items = items;
         this.currency = "EUR";
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public List<OrderItem> getItems() {
-        return items;
-    }
-
-    public BigDecimal getTax() {
-        return tax;
     }
 
     public int getId() {
@@ -115,10 +99,6 @@ public class Order {
 
     public void shipped() {
         this.status = OrderStatus.SHIPPED;
-    }
-
-    public boolean isCreated() {
-        return status.equals(OrderStatus.CREATED);
     }
 
     public void ship(ShipmentService shipmentService) {

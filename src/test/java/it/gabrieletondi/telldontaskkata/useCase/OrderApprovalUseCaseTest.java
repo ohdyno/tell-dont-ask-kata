@@ -15,7 +15,7 @@ public class OrderApprovalUseCaseTest {
     private final OrderApprovalUseCase useCase = new OrderApprovalUseCase(orderRepository);
 
     @Test
-    public void approvedExistingOrder() throws Exception {
+    public void approvedExistingOrder() {
         Order initialOrder = new Order(OrderStatus.CREATED);
         orderRepository.addOrder(initialOrder);
 
@@ -30,7 +30,7 @@ public class OrderApprovalUseCaseTest {
     }
 
     @Test
-    public void rejectedExistingOrder() throws Exception {
+    public void rejectedExistingOrder() {
         Order initialOrder = new Order(OrderStatus.CREATED);
         orderRepository.addOrder(initialOrder);
 
@@ -45,7 +45,7 @@ public class OrderApprovalUseCaseTest {
     }
 
     @Test(expected = RejectedOrderCannotBeApprovedException.class)
-    public void cannotApproveRejectedOrder() throws Exception {
+    public void cannotApproveRejectedOrder() {
         Order initialOrder = new Order(OrderStatus.REJECTED);
         orderRepository.addOrder(initialOrder);
 
@@ -59,7 +59,7 @@ public class OrderApprovalUseCaseTest {
     }
 
     @Test(expected = ApprovedOrderCannotBeRejectedException.class)
-    public void cannotRejectApprovedOrder() throws Exception {
+    public void cannotRejectApprovedOrder() {
         Order initialOrder = new Order(OrderStatus.APPROVED);
         orderRepository.addOrder(initialOrder);
 
@@ -73,7 +73,7 @@ public class OrderApprovalUseCaseTest {
     }
 
     @Test(expected = ShippedOrdersCannotBeChangedException.class)
-    public void shippedOrdersCannotBeApproved() throws Exception {
+    public void shippedOrdersCannotBeApproved() {
         Order initialOrder = new Order(OrderStatus.SHIPPED);
         orderRepository.addOrder(initialOrder);
 
@@ -87,7 +87,7 @@ public class OrderApprovalUseCaseTest {
     }
 
     @Test(expected = ShippedOrdersCannotBeChangedException.class)
-    public void shippedOrdersCannotBeRejected() throws Exception {
+    public void shippedOrdersCannotBeRejected() {
         Order initialOrder = new Order(OrderStatus.SHIPPED);
         orderRepository.addOrder(initialOrder);
 

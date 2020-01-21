@@ -32,20 +32,4 @@ public class OrderItem {
         this.taxedAmount = taxedAmount;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public BigDecimal getTaxedAmount() {
-        return taxedAmount;
-    }
-
-    public BigDecimal getTax() {
-        return tax;
-    }
-
 }

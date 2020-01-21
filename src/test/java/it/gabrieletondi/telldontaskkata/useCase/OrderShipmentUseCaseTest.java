@@ -17,7 +17,7 @@ public class OrderShipmentUseCaseTest {
     private final OrderShipmentUseCase useCase = new OrderShipmentUseCase(orderRepository, shipmentService);
 
     @Test
-    public void shipApprovedOrder() throws Exception {
+    public void shipApprovedOrder() {
         Order initialOrder = new Order(OrderStatus.APPROVED);
         orderRepository.addOrder(initialOrder);
 
@@ -31,7 +31,7 @@ public class OrderShipmentUseCaseTest {
     }
 
     @Test(expected = OrderCannotBeShippedException.class)
-    public void createdOrdersCannotBeShipped() throws Exception {
+    public void createdOrdersCannotBeShipped() {
         Order initialOrder = new Order(OrderStatus.CREATED);
         orderRepository.addOrder(initialOrder);
 
@@ -45,7 +45,7 @@ public class OrderShipmentUseCaseTest {
     }
 
     @Test(expected = OrderCannotBeShippedException.class)
-    public void rejectedOrdersCannotBeShipped() throws Exception {
+    public void rejectedOrdersCannotBeShipped() {
         Order initialOrder = new Order(OrderStatus.REJECTED);
         orderRepository.addOrder(initialOrder);
 
@@ -59,7 +59,7 @@ public class OrderShipmentUseCaseTest {
     }
 
     @Test(expected = OrderCannotBeShippedTwiceException.class)
-    public void shippedOrdersCannotBeShippedAgain() throws Exception {
+    public void shippedOrdersCannotBeShippedAgain() {
         Order initialOrder = new Order(OrderStatus.SHIPPED);
         orderRepository.addOrder(initialOrder);
 

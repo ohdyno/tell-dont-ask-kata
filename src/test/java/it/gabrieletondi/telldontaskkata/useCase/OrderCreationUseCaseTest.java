@@ -12,8 +12,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class OrderCreationUseCaseTest {
@@ -28,7 +26,7 @@ public class OrderCreationUseCaseTest {
     private final OrderCreationUseCase useCase = new OrderCreationUseCase(orderRepository, productCatalog);
 
     @Test
-    public void sellMultipleItems() throws Exception {
+    public void sellMultipleItems() {
 
         final SellItemsRequest request = new SellItemsRequest(
                 Arrays.asList(
@@ -66,7 +64,7 @@ public class OrderCreationUseCaseTest {
     }
 
     @Test(expected = UnknownProductException.class)
-    public void unknownProduct() throws Exception {
+    public void unknownProduct() {
         SellItemsRequest request = new SellItemsRequest(
                 Collections.singletonList(new SellItemRequest("unknown product", 0))
         );
