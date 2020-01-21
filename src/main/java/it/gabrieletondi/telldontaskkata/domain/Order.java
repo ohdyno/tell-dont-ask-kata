@@ -19,11 +19,11 @@ public class Order {
     private int id;
 
     public Order() {
-        this(1, OrderStatus.CREATED);
+        this(OrderStatus.CREATED);
     }
 
-    public Order(int id, OrderStatus status) {
-        this.id = id;
+    public Order(OrderStatus status) {
+        this.id = 1;
         this.status = status;
         this.items = new ArrayList<>();
         this.currency = "EUR";
@@ -53,10 +53,6 @@ public class Order {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public boolean cannotBeChanged() {
