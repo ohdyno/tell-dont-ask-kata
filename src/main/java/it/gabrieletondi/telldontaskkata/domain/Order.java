@@ -92,11 +92,11 @@ public class Order {
         return id == orderId;
     }
 
-    public void addToTax(BigDecimal tax) {
+    void addToTax(BigDecimal tax) {
         this.tax = this.tax.add(tax);
     }
 
-    public void addToTotal(BigDecimal amount) {
+    void addToTotal(BigDecimal amount) {
         this.total = total.add(amount);
     }
 
