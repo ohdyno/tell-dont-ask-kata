@@ -6,6 +6,17 @@ public class OrderItem {
     private final Product product;
     private final int quantity;
 
+    public OrderItem(Product product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
+
+    public void addTo(Order order) {
+        order.add(this);
+        order.addToTax(product.calculateTaxAmount(quantity));
+        order.addToTotal(product.calculateTaxedAmount(quantity));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -18,16 +29,5 @@ public class OrderItem {
     @Override
     public int hashCode() {
         return Objects.hash(product, quantity);
-    }
-
-    public OrderItem(Product product, int quantity) {
-        this.product = product;
-        this.quantity = quantity;
-    }
-
-    public void addTo(Order order) {
-        order.add(this);
-        order.addToTax(product.calculateTaxAmount(quantity));
-        order.addToTotal(product.calculateTaxedAmount(quantity));
     }
 }
