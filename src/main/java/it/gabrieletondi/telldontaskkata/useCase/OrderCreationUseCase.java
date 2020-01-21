@@ -30,7 +30,7 @@ public class OrderCreationUseCase {
             }
             else {
                 final BigDecimal taxedAmount = product.calculateTaxedAmount(itemRequest);
-                final BigDecimal taxAmount = product.calculateUnitaryTax().multiply(BigDecimal.valueOf(itemRequest.getQuantity()));
+                final BigDecimal taxAmount = product.calculateTaxAmount(itemRequest);
 
                 final OrderItem orderItem = new OrderItem();
                 orderItem.setProduct(product);
