@@ -11,6 +11,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -58,9 +59,8 @@ public class OrderCreationUseCaseTest {
 
     @Test(expected = UnknownProductException.class)
     public void unknownProduct() throws Exception {
-        SellItemsRequest request = new SellItemsRequest(new ArrayList<SellItemRequest>());
         SellItemRequest unknownProductRequest = new SellItemRequest("unknown product", 0);
-        request.getRequests().add(unknownProductRequest);
+        SellItemsRequest request = new SellItemsRequest(Collections.singletonList(unknownProductRequest));
 
         useCase.run(request);
     }
