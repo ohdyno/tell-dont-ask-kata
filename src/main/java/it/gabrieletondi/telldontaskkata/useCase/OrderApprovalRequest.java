@@ -4,8 +4,8 @@ import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 
 public class OrderApprovalRequest {
-    private int orderId;
-    private boolean approved;
+    private final int orderId;
+    private final boolean approved;
 
     public OrderApprovalRequest(int orderId, boolean approved) {
         this.orderId = orderId;

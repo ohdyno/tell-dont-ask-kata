@@ -5,7 +5,7 @@ import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import it.gabrieletondi.telldontaskkata.service.ShipmentService;
 
 public class OrderShipmentRequest {
-    private int orderId;
+    private final int orderId;
 
     public OrderShipmentRequest(int orderId) {
         this.orderId = orderId;
