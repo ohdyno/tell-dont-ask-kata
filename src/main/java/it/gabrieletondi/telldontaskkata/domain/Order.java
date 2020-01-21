@@ -134,4 +134,8 @@ public class Order {
             this.tax = tax.add(taxAmount);
         }
     }
+
+    public boolean hasId(int orderId) {
+        return getId() == orderId;
+    }
 }
