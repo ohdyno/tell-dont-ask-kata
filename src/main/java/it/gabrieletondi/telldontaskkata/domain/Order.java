@@ -54,10 +54,6 @@ public class Order {
         this.currency = "EUR";
     }
 
-    public int getId() {
-        return id;
-    }
-
     public boolean isRejected() {
         return status.equals(OrderStatus.REJECTED);
     }
@@ -136,6 +132,6 @@ public class Order {
     }
 
     public boolean hasId(int orderId) {
-        return getId() == orderId;
+        return id == orderId;
     }
 }
