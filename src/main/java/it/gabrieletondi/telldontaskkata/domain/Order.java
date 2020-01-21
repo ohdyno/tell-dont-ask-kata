@@ -72,6 +72,9 @@ public class Order {
     }
 
     public void reject() {
+        if (isApproved()) {
+            throw new ApprovedOrderCannotBeRejectedException();
+        }
         this.status = OrderStatus.REJECTED;
     }
 

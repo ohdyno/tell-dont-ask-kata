@@ -26,9 +26,6 @@ public class OrderApprovalRequest {
         if (isApproved()) {
             order.approve();
         } else {
-            if (order.isApproved()) {
-                throw new ApprovedOrderCannotBeRejectedException();
-            }
             order.reject();
         }
     }
